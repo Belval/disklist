@@ -3,7 +3,7 @@ import pickle
 import tempfile
 
 class DiskList(object):
-    def __init__(self, cache_size=64):
+    def __init__(self, cache_size=-1):
         """
             Init a new diskfile object.
         """
@@ -107,7 +107,7 @@ class DiskList(object):
             Insert an item at the given index
         """
 
-        self.tempfile.seek(0, 2)
+        self.tempfile.seek(0, 2) # Seek the EOF
         data = pickle.dumps(item)
         self.item_offsets.insert(index, self.tempfile.tell())
         self.item_sizes.insert(index, len(data))

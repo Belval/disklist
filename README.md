@@ -1,9 +1,9 @@
 # DiskList [![TravisCI](https://travis-ci.org/Belval/disklist.svg?branch=master)](https://travis-ci.org/Belval/disklist) [![PyPI version](https://badge.fury.io/py/disklist.svg)](https://badge.fury.io/py/disklist)
-A python list implementation that uses the disk to handle very large collections
+A python list implementation that uses the disk to handle very large collections of pickle-able objects.
 
 ## How does it work?
 
-DiskList will create a file on disk and store your objects in it. The most commonly used list methods and operators are implemented so you can use it as an almost drop-in replacement.
+DiskList will create a unamed temporary file on disk and store your objects in it. The most commonly used list methods and operators are implemented so you can use it as an almost drop-in replacement.
 
 Here's an example!
 
@@ -59,24 +59,24 @@ As with anything that uses the disk, expect every action to 2+ order of magnitud
 
 ```
 |---------- Instanciation ----------|
-List: 0.0000000401 sec
-DiskList: 0.0000253255 sec
+List: 0.0000000671 sec
+DiskList: 0.0000138546 sec
 |---------- Appending ----------|
-List: 0.0000000777 sec
-DiskList: 0.0000045708 sec
+List: 0.0000001158 sec
+DiskList: 0.0000027095 sec
 |---------- Inserting ----------|
-List: 0.0000005037 sec
-DiskList: 0.0000056986 sec
+List: 0.0000004970 sec
+DiskList: 0.0000045391 sec
 |------ Getting with index ------|
-List: 0.0000000405 sec
-DiskList: 0.0000037300 sec
+List: 0.0000000514 sec
+DiskList: 0.0000034319 sec
 |------ Setting with index ------|
-List: 0.0000000369 sec
-DiskList: 0.0000046653 sec
+List: 0.0000000647 sec
+DiskList: 0.0000034748 sec
 |---------- Iterating ----------|
-List: 0.0000147605 sec
-DiskList without cache: 0.0043490459 sec
-DiskList with cache: 0.0021559978 sec
+List: 0.0000154976 sec
+DiskList without cache: 0.0035845941 sec
+DiskList with cache: 0.0015620445 sec
 ```
 
 **Full disclosure, these tests were done using an SSD**
