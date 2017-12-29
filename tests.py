@@ -21,7 +21,7 @@ class TestDiskList(unittest.TestCase):
 
     def test_getitem(self):
         """
-            Test the [] operator
+            Test the [] operator for getting items
         """
 
         dlist = DiskList()
@@ -31,6 +31,22 @@ class TestDiskList(unittest.TestCase):
         dlist.append('3')
 
         self.assertTrue(dlist[0] == '0' and dlist[1] == '1' and dlist[2] == '2' and dlist[-1] == '3')
+
+    def test_setitem(self):
+        """
+            Test the [] operator for setting items
+        """
+
+        dlist = DiskList()
+        dlist = DiskList()
+        dlist.append('0')
+        dlist.append('1')
+        dlist.append('2')
+        dlist.append('3')
+
+        dlist[0] = '10'
+
+        self.assertTrue(dlist[0] == '10' and dlist[1] == '1' and dlist[2] == '2' and dlist[-1] == '3')
 
     def test_len(self):
         """
@@ -53,6 +69,21 @@ class TestDiskList(unittest.TestCase):
         dlist.append('3')
 
         self.assertTrue(len(dlist) == 4)
+
+    def test_insert(self):
+        """
+            Test inserting new items
+        """
+
+        dlist = DiskList()
+        dlist.append('0')
+        dlist.append('1')
+        dlist.append('2')
+        dlist.append('3')
+
+        dlist.insert(1, '10')
+
+        self.assertTrue(len(dlist) == 5 and dlist[1] == '10')
 
     def test_iteration(self):
         """

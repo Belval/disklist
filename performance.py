@@ -38,9 +38,23 @@ def main():
     end = timer()
     print('DiskList: {:.10f} sec'.format((end - start) / 1000))
 
+    # Inserting
+    print('|---------- Inserting ----------|')
+    # List
+    start = timer()
+    for i in range(0, 1000):
+        l.insert(i, i)
+    end = timer()
+    print('List: {:.10f} sec'.format((end - start) / 1000))
+    # DiskList
+    start = timer()
+    for i in range(0, 1000):
+        dl.insert(i, i)
+    end = timer()
+    print('DiskList: {:.10f} sec'.format((end - start) / 1000))
 
-    # Accessing with index
-    print('|------ Accessing with index ------|')
+    # Getting with index
+    print('|------ Getting with index ------|')
     # List
     start = timer()
     for i in range(0, 1000):
@@ -51,6 +65,21 @@ def main():
     start = timer()
     for _ in range(0, 1000):
         dl[i]
+    end = timer()
+    print('DiskList: {:.10f} sec'.format((end - start) / 1000))
+
+    # Setting with index
+    print('|------ Setting with index ------|')
+    # List
+    start = timer()
+    for i in range(0, 1000):
+        l[i] = i
+    end = timer()
+    print('List: {:.10f} sec'.format((end - start) / 1000))
+    # DiskList
+    start = timer()
+    for _ in range(0, 1000):
+        dl[i] = i
     end = timer()
     print('DiskList: {:.10f} sec'.format((end - start) / 1000))
 

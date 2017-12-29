@@ -84,12 +84,35 @@ class DiskList(object):
             self.tempfile.seek(self.item_offsets[index])
             return pickle.loads(self.tempfile.read(self.item_sizes[index]))
 
+    def __setitem__(self, index, item):
+        """
+            Replace an item at a given position
+        """
+
+        self.tempfile.seek(0, 2)
+        data = pickle.dumps(item)
+        self.item_offsets[index] = self.tempfile.tell()
+        self.item_sizes[index] = len(data)
+        self.tempfile.write(data)
+
     def __len__(self):
         """
             Return the length of the DiskList
         """
 
         return len(self.item_offsets)
+
+    def insert(self, index, item):
+        """
+            Insert an item at the given index
+        """
+
+        self.tempfile.seek(0, 2)
+        data = pickle.dumps(item)
+        self.item_offsets.insert(index, self.tempfile.tell())
+        self.item_sizes.insert(index, len(data))
+        self.tempfile.write(data)
+
 
     def append(self, item):
         """

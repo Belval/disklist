@@ -18,6 +18,14 @@ for i in range(0, 1000):
 dl[0] # Boring indexing works!
 dl[0:2] # So does slicing!
 
+What if you want to insert something?
+
+dl.insert(0, 2)
+
+...or setting an element
+
+dl[0] = 2
+
 Concatenation is functional too
 
 dl2 = DiskList()
@@ -34,25 +42,44 @@ for item in dl:
 
 Anything that you can do with a list that is impossible with a DiskList deserves an issue!
 
+## Setting an index to a new value
+
+Mostly for speed concerns, setting an index to something doesn't clean the old object in the TemporaryFile so while the "list" will dereference it, the space on your disk will still be used. While this will not have any real impacts in most usecases, avoid doing stuff like this:
+
+```
+for i in range(1000000):
+    dl[0] = i
+```
+
+Because while `dl[0]` will be equal to `999999`, you effectively created 7.868 MB (yes I did the math) of useless data on your disk.
+
 ## Speed
 
 As with anything that uses the disk, expect every action to 2+ order of magnitude slower than a regular list. Here are some benchmarks:
 
 ```
 |---------- Instanciation ----------|
-List: 0.0000000372 sec
-DiskList: 0.0000248346 sec
+List: 0.0000000401 sec
+DiskList: 0.0000253255 sec
 |---------- Appending ----------|
-List: 0.0000000934 sec
-DiskList: 0.0000045466 sec
-|------ Accessing with index ------|
-List: 0.0000000391 sec
-DiskList: 0.0000038139 sec
+List: 0.0000000777 sec
+DiskList: 0.0000045708 sec
+|---------- Inserting ----------|
+List: 0.0000005037 sec
+DiskList: 0.0000056986 sec
+|------ Getting with index ------|
+List: 0.0000000405 sec
+DiskList: 0.0000037300 sec
+|------ Setting with index ------|
+List: 0.0000000369 sec
+DiskList: 0.0000046653 sec
 |---------- Iterating ----------|
-List: 0.0000072625 sec
-DiskList without cache: 0.0021884149 sec
-DiskList with cache: 0.0021451381 sec
+List: 0.0000147605 sec
+DiskList without cache: 0.0043490459 sec
+DiskList with cache: 0.0021559978 sec
 ```
+
+**Full disclosure, these tests were done using an SSD**
 
 ## When should you use it?
 
