@@ -1,6 +1,8 @@
 # DiskList [![TravisCI](https://travis-ci.org/Belval/disklist.svg?branch=master)](https://travis-ci.org/Belval/disklist) [![PyPI version](https://badge.fury.io/py/disklist.svg)](https://badge.fury.io/py/disklist)
 A python list implementation that uses the disk to handle very large collections of pickle-able objects.
 
+Now as a PyPi package: `pip install disklist`!
+
 ## How does it work?
 
 DiskList will create a unamed temporary file on disk and store your objects in it. The most commonly used list methods and operators are implemented so you can use it as an almost drop-in replacement.
