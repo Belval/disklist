@@ -95,6 +95,14 @@ class DiskList(object):
         self.item_sizes[index] = len(data)
         self.tempfile.write(data)
 
+    def __delitem__(self, index):
+        """
+            Delete an item from the list
+        """
+
+        del self.item_offsets[index]
+        del self.item_sizes[index]
+
     def __len__(self):
         """
             Return the length of the DiskList
@@ -113,7 +121,6 @@ class DiskList(object):
         self.item_sizes.insert(index, len(data))
         self.tempfile.write(data)
 
-
     def append(self, item):
         """
             Appends an item at the end of the list
@@ -124,3 +131,65 @@ class DiskList(object):
         self.item_offsets.append(self.tempfile.tell())
         self.item_sizes.append(len(data))
         self.tempfile.write(data)
+
+    def extend(self, iterable):
+        """
+            Extend the list by appending all the items from the iterable
+        """
+
+        for item in iterable:
+            self.append(item)
+
+    def index(self, item, start=None, end=None):
+        """
+            Returns the index of an
+        """
+
+        data = pickle.dumps(item)
+        data_len = len(data)
+        for index, item_size in enumerate(self.item_sizes[start:end]):
+            if item_size == data_len and item == self[index]:
+                return index
+        # We didn't find the item!
+        raise ValueError('{} is not in list'.format(str(item)))
+
+    def remove(self, item):
+        """
+            Remove the first item from the list whose value is item
+        """
+
+        del self[self.index(item)]
+
+    def pop(self, index=-1):
+        """
+            Remove the item at the given position in the list, and return it
+        """
+
+        item = self[index]
+        del self[index]
+        return item
+
+    def count(self, item):
+        """
+            Return the number of times item appears in the list
+        """
+
+        data = pickle.dumps(item)
+        data_len = len(data)
+        count = 0
+        for index, item_size in enumerate(self.item_sizes):
+            if item_size == data_len and item == self[index]:
+                count += 1
+        return count
+
+    def clear(self):
+        """
+            Clear the list
+        """
+
+        self.item_offsets.clear()
+        self.item_sizes.clear()
+        self.cache.clear()
+        self.cache_index = 0
+        self.tempfile.close()
+        self.tempfile = tempfile.TemporaryFile()
