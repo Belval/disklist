@@ -17,7 +17,7 @@ class DiskList(object):
 
     def __del__(self):
         """
-            Destructor that closes the tempfile (which destorys it)
+            Destructor that closes the tempfile (which destroys it)
         """
 
         self.tempfile.close()
