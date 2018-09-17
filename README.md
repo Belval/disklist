@@ -61,24 +61,37 @@ As with anything that uses the disk, expect every action to 2+ order of magnitud
 
 ```
 |---------- Instanciation ----------|
-List: 0.0000000671 sec
-DiskList: 0.0000138546 sec
+List: 0.0000000444 sec
+DiskList: 0.0000147268 sec
+|---------- Instanciation with big object ----------|
+List: 0.0000000341 sec
+DiskList: 0.0000169193 sec
 |---------- Appending ----------|
-List: 0.0000001158 sec
-DiskList: 0.0000027095 sec
+List: 0.0000000967 sec
+DiskList: 0.0000034166 sec
+|---------- Appending big object ----------|
+List: 0.0000000715 sec
+DiskList: 0.0000214165 sec
 |---------- Inserting ----------|
-List: 0.0000004970 sec
-DiskList: 0.0000045391 sec
+List: 0.0000005487 sec
+DiskList: 0.0000044418 sec
+|---------- Inserting big object ----------|
+List: 0.0000004602 sec
+DiskList: 0.0000218233 sec
 |------ Getting with index ------|
-List: 0.0000000514 sec
-DiskList: 0.0000034319 sec
+List: 0.0000000430 sec
+DiskList: 0.0000030653 sec
 |------ Setting with index ------|
-List: 0.0000000647 sec
-DiskList: 0.0000034748 sec
+List: 0.0000000898 sec
+DiskList: 0.0000034653 sec
 |---------- Iterating ----------|
-List: 0.0000154976 sec
-DiskList without cache: 0.0035845941 sec
-DiskList with cache: 0.0015620445 sec
+List: 0.0000154686 sec
+DiskList without cache: 0.0028857501 sec
+DiskList with cache: 0.0013473100 sec
+|---------- Iterating with big object ----------|
+List: 0.0000151939 sec
+DiskList without cache: 0.0312750774 sec
+DiskList with cache: 0.0160398417 sec
 ```
 
 **Full disclosure, these tests were done using an SSD**
