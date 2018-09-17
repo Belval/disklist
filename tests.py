@@ -256,6 +256,117 @@ class TestDiskList(unittest.TestCase):
 
         self.assertTrue(len(dlist) == 0)
 
+    def test_use_cache(self):
+        """
+            Test using cache
+        """
+
+        dlist = DiskList(cache_size=10)
+
+        l1 = []
+        l2 = []
+        l3 = []
+        l4 = []
+
+        for i in range(100):
+            dlist.append(i)
+            l1.append(i) 
+
+        for i in dlist:
+            l2.append(i)
+
+        for i in dlist:
+            l3.append(i)
+
+        l4 = dlist[0:50]
+        for i in dlist[50:]:
+            l4.append(i)
+
+        self.assertTrue(all([i == j and j == k and k == l for i, j, k, l in zip(l1, l2, l3, l4)]))
+    
+    def test_use_cache_bigger_than_list(self):
+        """
+            Test using cache
+        """
+
+        dlist = DiskList(cache_size=1000)
+
+        l1 = []
+        l2 = []
+        l3 = []
+        l4 = []
+
+        for i in range(100):
+            dlist.append(i)
+            l1.append(i) 
+
+        for i in dlist:
+            l2.append(i)
+
+        for i in dlist:
+            l3.append(i)
+
+        l4 = dlist[0:50]
+        for i in dlist[50:]:
+            l4.append(i)
+
+        self.assertTrue(all([i == j and j == k and k == l for i, j, k, l in zip(l1, l2, l3, l4)]))
+    
+    def test_use_cache_of_1(self):
+        """
+            Test using cache
+        """
+
+        dlist = DiskList(cache_size=1)
+
+        l1 = []
+        l2 = []
+        l3 = []
+        l4 = []
+
+        for i in range(100):
+            dlist.append(i)
+            l1.append(i) 
+
+        for i in dlist:
+            l2.append(i)
+
+        for i in dlist:
+            l3.append(i)
+
+        l4 = dlist[0:50]
+        for i in dlist[50:]:
+            l4.append(i)
+
+        self.assertTrue(all([i == j and j == k and k == l for i, j, k, l in zip(l1, l2, l3, l4)]))
+
+    def test_use_cache_of_0(self):
+        """
+            Test using cache
+        """
+
+        dlist = DiskList(cache_size=0)
+
+        l1 = []
+        l2 = []
+        l3 = []
+        l4 = []
+
+        for i in range(100):
+            dlist.append(i)
+            l1.append(i) 
+
+        for i in dlist:
+            l2.append(i)
+
+        for i in dlist:
+            l3.append(i)
+
+        l4 = dlist[0:50]
+        for i in dlist[50:]:
+            l4.append(i)
+
+        self.assertTrue(all([i == j and j == k and k == l for i, j, k, l in zip(l1, l2, l3, l4)]))
 
 if __name__ == '__main__':
     unittest.main()
