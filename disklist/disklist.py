@@ -3,7 +3,7 @@ import pickle
 import tempfile
 
 class DiskList(object):
-    def __init__(self, cache_size=-1):
+    def __init__(self, cache_size=-1, tmp_dir=None):
         """
             Init a new diskfile object.
         """
@@ -13,7 +13,7 @@ class DiskList(object):
         self.cache = []
         self.cache_size = cache_size
         self.cache_index = 0
-        self.tempfile = tempfile.TemporaryFile()
+        self.tempfile = tempfile.TemporaryFile(dir=tmp_dir)
 
     def __del__(self):
         """
