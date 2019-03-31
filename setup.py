@@ -9,7 +9,7 @@ here = path.abspath(path.dirname(__file__))
 setup(
     name='disklist',
 
-    version='0.3.0',
+    version='0.4.0',
 
     description='A list implementation that use a tempfile as its backend.',
 
