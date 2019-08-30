@@ -9,7 +9,7 @@ DiskList will create a unamed temporary file on disk and store your objects in i
 
 Here's an example!
 
-```
+```py
 from disklist import DiskList
 
 dl = DiskList()
@@ -20,22 +20,22 @@ for i in range(0, 1000):
 dl[0] # Boring indexing works!
 dl[0:2] # So does slicing!
 
-What if you want to insert something?
+# What if you want to insert something?
 
 dl.insert(0, 2)
 
-...or setting an element
+# ...or setting an element
 
 dl[0] = 2
 
-Concatenation is functional too
+# Concatenation is functional too
 
 dl2 = DiskList()
 dl2.append(4)
 
 dl = dl + dl2
 
-Why not iterate through it?
+# Why not iterate through it?
 
 for item in dl:
     print(dl) # 1, 2, 3, 4, 5, 6... You get the point
@@ -48,7 +48,7 @@ Anything that you can do with a list that is impossible with a DiskList deserves
 
 Mostly for speed concerns, setting an index to something doesn't clean the old object in the TemporaryFile so while the "list" will dereference it, the space on your disk will still be used. While this will not have any real impacts in most usecases, avoid doing stuff like this:
 
-```
+```py
 for i in range(1000000):
     dl[0] = i
 ```
