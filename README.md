@@ -1,4 +1,4 @@
-# DiskList [![TravisCI](https://travis-ci.org/Belval/disklist.svg?branch=master)](https://travis-ci.org/Belval/disklist) [![PyPI version](https://badge.fury.io/py/disklist.svg)](https://badge.fury.io/py/disklist) [![codecov](https://codecov.io/gh/Belval/disklist/branch/master/graph/badge.svg)](https://codecov.io/gh/Belval/disklist) [![Downloads](https://pepy.tech/badge/disklist)](https://pepy.tech/project/disklist)
+# DiskList [![TravisCI](https://travis-ci.org/Belval/disklist.svg?branch=master)](https://travis-ci.org/Belval/disklist) [![PyPI version](https://badge.fury.io/py/disklist.svg)](https://badge.fury.io/py/disklist) [![codecov](https://codecov.io/gh/Belval/disklist/branch/master/graph/badge.svg)](https://codecov.io/gh/Belval/disklist) [![Downloads](https://pepy.tech/badge/disklist/month)](https://pepy.tech/project/disklist/month)
 A python list implementation that uses the disk to handle very large collections of pickle-able objects.
 
 Now as a PyPi package: `pip install disklist`!
